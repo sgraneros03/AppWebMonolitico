@@ -1,0 +1,48 @@
+﻿@using AppWebMonolitico.Models
+@model IEnumerable<Clase>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Control de Clases</h1>
+
+<p>
+    <a asp-action="AgregarClase">AgregarClase New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pago)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Pago)
+                </td>
+                <td>
+                    @i.Fecha.ToShortDateString()
+                </td>
+                <td>
+                    <a asp-action="ActualizarClase" asp-route-id="@i.id">Editar</a> |
+                    <a asp-action="Detalles" asp-route-id="@i.id">Ver</a> |
+                    <a asp-action="EliminarClase" asp-route-id="@i.id">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
